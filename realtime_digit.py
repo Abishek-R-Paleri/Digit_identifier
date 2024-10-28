@@ -23,12 +23,14 @@ cap = cv2.VideoCapture(0)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 # Main loop for capturing and predicting
-try:
-    while cap.isOpened():
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-        if not ret:
-            break
+while True:
+    ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    cv2.imshow("number", frame)
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'):  # Press 'q' to quit
+        break
 
         # Flip the frame horizontally for natural interaction
         frame = cv2.flip(frame, 1)
